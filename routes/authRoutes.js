@@ -7,6 +7,11 @@ router.get('/google',
     })
 );
 
-router.get('/google/callback',passport.authenticate('google'));
+router.get('/google/callback',
+    passport.authenticate('google'), 
+    (req,res)=>{
+        return res.redirect('/surveys');
+    }
+);
 
 module.exports=router;

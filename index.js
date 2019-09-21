@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 mongoose.connect(keys.mongoURI,{useNewUrlParser:true})
 
@@ -23,9 +24,11 @@ app.use(passport.session());
 const authRoutes = require('./routes/authRoutes');
 const apiRoutes = require('./routes/apiRoutes');
 const billingRoutes = require('./routes/billingRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 app.use('/auth',authRoutes);
 app.use('/api', apiRoutes);
 app.use('/api', billingRoutes);
+app.use('/api', surveyRoutes);
 
 if(process.env.NODE_ENV === 'production'){
     //Express will serve up productions assests like main.js or main.css
